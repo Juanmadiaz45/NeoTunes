@@ -42,10 +42,10 @@ public class Main{
 				"3. Registrar canciones y podcasts.\n" +
 				"4. Crear una lista de reproduccion.\n" +
 				"5. Editar una lista de reproduccion.\n" +
-				"6. \n" +
-				"7. \n" +
-				"8. \n" +
-				"9. \n" +
+				"6. Compartir una lista de reproducción.\n" +
+				"7. Simular la reproducción de una canción o podcast (estándar y premium).\n" +
+				"8. Comprar una canción.\n" +
+				"9. Generar informes con los datos registrados.\n" +
 				"0. Exit. " +
 				"\n");
 		option = reader.nextInt(); 
