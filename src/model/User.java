@@ -9,7 +9,13 @@ public abstract class User{
     private Date bondingDate;
     private Calendar calendar;
 
-    public User(String nickname, String cc){
+    /**
+     * User user class constructor.
+     * @param nickname user nickname.
+     * @param cc user identifier document.
+     */
+
+    public User(String cc, String nickname){
         this.nickname = nickname;
         this.cc = cc;
         this.calendar = Calendar.getInstance();
