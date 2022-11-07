@@ -17,7 +17,6 @@ public class Playlist {
     /**
      * Playlist playlist class constructor.
      * @param name playlist name.
-     * @param codes playlist  matrix code.
      * @param optionCode playlist code type option.
      */
 

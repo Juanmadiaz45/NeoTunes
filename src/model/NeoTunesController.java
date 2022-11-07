@@ -15,7 +15,7 @@ public class NeoTunesController{
 
     /**
      * addProducers through the arraylist artists and content creators type producers are added.
-     * @param producer artists or content creators type producers.
+     * @param user artists or content creators type producers.
      * @return creation boolean.
      */
 
