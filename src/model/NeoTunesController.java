@@ -56,6 +56,18 @@ public class NeoTunesController{
         return msj;
     }
 
+    public Audio searchAudio(String aname){
+        Audio audio = null;
+        boolean isFound = false;
+         for(int i=0;i<audios.size() && !isFound ;i++){
+            if( audios.get(i).getName().equalsIgnoreCase(aname)){
+                audio = audios.get(i);
+                isFound = true;
+            }
+         }
+        return audio;
+    }
+
     /**
      * printPodcastCategory prints the numbering of categorys types in order.
      * @return listed podcasts categorys.
@@ -102,16 +114,29 @@ public class NeoTunesController{
         return msj;
     }
 
-    /**
-     * addOtherSong add other songs to the playlist.
-     * @param name song name.
-     * @param urlImage url of the identifying image of the song.
-     * @param duration song duration.
-     * @param album name of the album to which the song belongs.
-     * @param value dollar value of the song.
-     * @param genders song gender.
-     * @return method validation message.
-     */
+
+    public String addFinalAudio(String name, int optionCode, String aname){
+        String msj = "";
+        Audio audio = searchAudio(aname);
+        boolean isEmpty = false;
+        for(int i = 0; i < audios.size() && !isEmpty; i++){
+            if(audios.get(i).getName().equalsIgnoreCase(name)){
+                if(users.get(i) instanceof Premium){
+                    Premium premium = (Premium) users.get(i);
+                    msj = premium.addAudio(name, optionCode, audio);
+                }else{
+                    if(users.get(i) instanceof Standard){
+                        Standard standard = (Standard) users.get(i);
+                        msj = standard.addAudio(name, optionCode, audio);
+                    }
+                }
+                isEmpty = true;
+            }else{
+                msj = "El audio no existe.";
+            }
+        }
+        return msj;
+    }
 
     /**
      * removeAudio remove songs and podcast from a playlist.
@@ -119,17 +144,17 @@ public class NeoTunesController{
      * @return method validation message.
      */
 
-    public String removeAudio(String name){
+    public String removeAudio(String aname){
         String msj = "";
         boolean isEmpty = false;
         for(int i = 0; i < users.size() && !isEmpty; i++){
             if(users.get(i) instanceof Premium){
                 Premium premium = (Premium) users.get(i);
-                msj = premium.removeAudioToPlaylistP(name);
+                msj = premium.removeAudioToPlaylistP(aname);
             }else{
                 if(users.get(i) instanceof Standard){
                     Standard standard = (Standard) users.get(i);
-                    msj = standard.removeAudioToPlaylistS(name);
+                    msj = standard.removeAudioToPlaylistS(aname);
                 }
                 isEmpty = true;
             }

@@ -75,12 +75,12 @@ public class Standard extends Consumer{
      * @param name playlist name.
      * @return validation message when removing an item.
      */
-    public String removeAudioToPlaylistS(String name){
+    public String removeAudioToPlaylistS(String aname){
         String msj = "";
         boolean isEmpty = false;
         for(int i = 0; i < PLAYLIST_SIZE && !isEmpty; i++){
-            if(playlists[i].getName().equalsIgnoreCase(name)){
-                msj = playlists[i].remove(name);
+            if(playlists[i].getName().equalsIgnoreCase(aname)){
+                msj = playlists[i].remove(aname);
                 isEmpty = true;
             }
         }

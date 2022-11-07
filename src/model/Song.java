@@ -17,8 +17,8 @@ public class Song extends Audio{
      * @param genders song gender.
      */
 
-    public Song(String name, String urlImage, double duration, String album, double value, int genders){
-        super(name, urlImage, duration);
+    public Song(String aname, String urlImage, double duration, String album, double value, int genders){
+        super(aname, urlImage, duration);
         this.album = album;
         this.value = value;
         this.genders = genders;

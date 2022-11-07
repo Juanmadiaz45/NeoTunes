@@ -2,7 +2,7 @@ package model;
 
 public class Audio{
 
-    private String name;
+    private String aname;
     private String urlImage;
     private int numberOfPlays;
     private double duration;
@@ -15,14 +15,14 @@ public class Audio{
      */
 
     public Audio(String name, String urlImage, double duration){
-        this.name = name;
+        this.aname = aname;
         this.urlImage = urlImage;
         this.duration = duration;
         numberOfPlays = 0;
     }
 
     public String getName(){
-        return name;
+        return aname;
     }
 
     public int getNumberOfPlays(){

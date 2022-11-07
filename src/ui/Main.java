@@ -60,6 +60,8 @@ public class Main{
         String producerType = "";
         int optionCode = 0;
         int option2 = 0;
+        String audio = "";
+        String aname = "";
         int genders = 0;
         int category = 0;
         String description = "";
@@ -197,7 +199,7 @@ public class Main{
 
                 if(audioType.equalsIgnoreCase("Cancion")){
                     System.out.println("\nIngres el nombre de la cancion: ");
-                    name = reader.next();
+                    aname = reader.next();
                     reader.nextLine();
                     System.out.println("\nIngrese el url de la imagen representativa: ");
                     urlImage = reader.next();
@@ -217,7 +219,7 @@ public class Main{
                         genders = reader.nextInt();
                     }while(genders != 1 && genders != 2 && genders != 3 && genders != 4);
 
-                    Audio song = new Song(name, urlImage, duration, album, value, genders);
+                    Audio song = new Song(aname, urlImage, duration, album, value, genders);
 
                     controller.addAudios(song);
 
@@ -231,7 +233,7 @@ public class Main{
                 }else{
                     if(audioType.equalsIgnoreCase("Podcast")){
                         System.out.println("\nIngres el nombre del podcast: ");
-                        name = reader.next();
+                        aname = reader.next();
                         reader.nextLine();
                         System.out.println("\nIngrese el url de la imagen representativa: ");
                         urlImage = reader.next();
@@ -251,7 +253,7 @@ public class Main{
 
                         }while(category != 1 && category != 2 && category != 3 && category != 4);
 
-                        Audio podcast = new Podcast(name, urlImage, duration, description, category);
+                        Audio podcast = new Podcast(aname, urlImage, duration, description, category);
 
                         controller.addAudios(podcast);
 
@@ -293,18 +295,34 @@ public class Main{
 
                 System.out.println("Ingrese el nombre de la playlist: ");
                 name = reader.next();
+                reader.nextLine();
 
-                System.out.println("Que deseas hacer con la lista de reproduccion? \n1. Eliminar una cancion.");
+                System.out.println("Que deseas hacer con la lista de reproduccion? \n1. Agregar una cancion. \n2. Eliminar una cancion.");
                 option2 = reader.nextInt();
 
-                if(option == 1){
+                if(option2 == 1){
+
+                    do{
+                        System.out.println("Ingrese el tipo de lista de reproduccion: \n1. Solo canciones. \n2. Solo podcast. \n3. Canciones y podcast.");
+                        optionCode = reader.nextInt();
+                    }while(optionCode != 1 && optionCode != 2 && optionCode != 3);
+
+                    System.out.println("Ingrese el nombre del audio: ");
+                    aname = reader.next();
+
+                    msj = controller.addFinalAudio(name, optionCode, aname);
+                    System.out.println(msj);
+
+
+                    
+                }else if(option2 == 2){
                     msj = controller.printAudios();
                     System.out.println(msj);
-                    
-                    System.out.println("Ingrese el nombre de la cancion o podcast a remover: ");
-                    name = reader.next();
 
-                    msj = controller.removeAudio(name);
+                    System.out.println("Ingrese el nombre de la cancion o podcast a remover: ");
+                    aname = reader.next();
+
+                    msj = controller.removeAudio(aname);
                     System.out.println(msj);
                 }
 

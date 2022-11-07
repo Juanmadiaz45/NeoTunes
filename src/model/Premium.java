@@ -76,12 +76,12 @@ public class Premium extends Consumer{
      * @return validation message when removing an item.
      */
 
-    public String removeAudioToPlaylistP(String name){
+    public String removeAudioToPlaylistP(String aname){
         String msj = "";
         boolean isEmpty = false;
         for(int i = 0; i < playlists.size() && !isEmpty; i++){
-            if(playlists.get(i).getName().equalsIgnoreCase(name)){
-                msj = playlists.get(i).remove(name);
+            if(playlists.get(i).getName().equalsIgnoreCase(aname)){
+                msj = playlists.get(i).remove(aname);
                 isEmpty = true;
             }
         }
