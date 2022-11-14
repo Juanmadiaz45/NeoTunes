@@ -2,7 +2,8 @@ package model;
 
 public class Audio{
 
-    private String aname;
+    private String name;
+    private String owner;
     private String urlImage;
     private int numberOfPlays;
     private double duration;
@@ -14,15 +15,20 @@ public class Audio{
      * @param duration audio duration.
      */
 
-    public Audio(String name, String urlImage, double duration){
-        this.aname = aname;
+    public Audio(String name, String urlImage, double duration, String owner){
+        this.name = name;
         this.urlImage = urlImage;
         this.duration = duration;
+        this.owner = owner;
         numberOfPlays = 0;
     }
 
     public String getName(){
-        return aname;
+        return name;
+    }
+
+    public String getOwner(){
+        return owner;
     }
 
     public int getNumberOfPlays(){

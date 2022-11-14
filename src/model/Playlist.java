@@ -9,9 +9,9 @@ public class Playlist {
     public static final int COLUMS = 5;
     private int[][] codes; 
     private Random random;
-    private ArrayList<Audio> audios; 
+    private ArrayList<Audio> audios;
 
-    private String name;
+    private String playlistname;
     private int optionCode;
 
     /**
@@ -20,32 +20,31 @@ public class Playlist {
      * @param optionCode playlist code type option.
      */
 
-    public Playlist(String name, int optionCode){
-        this.name = name;
+    public Playlist(String playlistname, int optionCode){
+        this.playlistname = playlistname;
         random =  new Random();
         codes = new int[ROWS][COLUMS];
         audios = new ArrayList<Audio>();
+        this.optionCode = optionCode;
 
-        String codesMsj = null;
+
         switch(optionCode){
             case 1:
-                codesMsj = getSongCode();
+                getSongCode();
                 break;
             case 2:
-                codesMsj = getPodcastCode();
+                getPodcastCode();
+                break;
             case 3:
-                codesMsj = getPodcastAndSongsCode();
+                getPodcastAndSongsCode();
+                break;
             default:
                 System.out.println("Opcion invalida.");
         }
     }
 
     public String getName(){
-        return name;
-    }
-
-    public ArrayList<Audio> getAudios() {
-        return audios;
+        return playlistname;
     }
 
     /**
@@ -106,23 +105,12 @@ public class Playlist {
         return msj;
     }
 
-    /**
-     * remove remove items from an audio array.
-     * @param name audio name.
-     * @return validation message when removing the item.
-     */
+    public void addPodcast(Audio podcast){
+        audios.add(podcast);
+    }
 
-    public String remove(String name){
-        String msj = "";
-        boolean exist = false;
-        for(int i = 0; i < audios.size() && !exist; i++){
-            if(audios.get(i).getName().equalsIgnoreCase(name)){
-                audios.remove(i);
-                exist = true;
-                msj = "Item removido.";
-            }
-        }
-        return msj;
+    public void removeAudio(int posAudio){
+        audios.remove(posAudio);
     }
 
     /**
@@ -132,8 +120,8 @@ public class Playlist {
 
     public String getPodcastAndSongsCode(){
         String msj = "";
-        for(int i = codes.length; i >= 0; i--){
-            for(int j = codes.length; j >=0; j--){
+        for(int i = codes.length -1; i >= 0; i--){
+            for(int j = codes.length -1; j >=0; j--){
                 if(((i+j)/2) != 0){
                     if(((i+j)/2) != 1){
                         msj += codes[i][j];
@@ -142,5 +130,9 @@ public class Playlist {
             }
         }
         return msj;
+    }
+
+    public void addSong(Audio song){
+        audios.add(song);
     }
 }

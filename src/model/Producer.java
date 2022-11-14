@@ -2,7 +2,7 @@ package model;
 
 public abstract class Producer extends User{
 
-    private String name;
+    private String pname;
     private String url;
 
     /**
@@ -13,18 +13,18 @@ public abstract class Producer extends User{
      * @param cc producer identifier document.
      */
 
-    public Producer(String name, String url, String nickname, String cc){
+    public Producer(String pname, String url, String nickname, String cc){
         super(nickname, cc);
-        this.name = name;
+        this.pname = pname;
         this.url = url;
     }
 
     public String getName(){
-        return name;
+        return pname;
     }
 
     public void setName(String name){
-        this.name = name;
+        this.pname = name;
     }
 
     public String getUrl(){

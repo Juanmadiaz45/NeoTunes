@@ -5,12 +5,14 @@ public class NeoTunesController{
 
     private ArrayList<User> users;
     private ArrayList<Audio> audios;
+    private ArrayList<Playlist> playlists;
 
     //arraylist initialization.
 
     public NeoTunesController(){
         users = new ArrayList<User>();
         audios = new ArrayList<Audio>();
+        playlists = new ArrayList<Playlist>();
     }
 
     /**
@@ -34,6 +36,140 @@ public class NeoTunesController{
     }
 
     /**
+     * searchUserByNickname search for a user by name in the arraylist of users.
+     * @param nickname user nickname.
+     * @return position in which the searched user is located.
+     */
+
+    public int searchUserByNickname(String nickname){
+        int pos = -1;
+        boolean isFound = false;
+        for(int i = 0; i < users.size() && !isFound; i++){
+            if(nickname.equalsIgnoreCase(users.get(i).getNickname())){
+                pos = i;
+                isFound = true;
+            }
+        }
+        return pos;
+    }
+
+    /**
+     * searchAudioByProducer search for the position in which an audio of a specific author is found.
+     * @param name audio name.
+     * @param owner audio owner.
+     * @return position in which the searched audio is located.
+     */
+
+    public int searchAudioByProducer(String name, String owner){
+        int pos = -1;
+        boolean isFound = false;
+        for(int i = 0; i < audios.size() && !isFound; i++){
+            if(name.equalsIgnoreCase(audios.get(i).getName())){
+                if(owner.equalsIgnoreCase(audios.get(i).getOwner())){
+                    pos = i;
+                    isFound = true;
+                }
+            }
+        }
+        return pos;
+    }
+
+    /**
+     * searchPlaylistByName search for a playlist by name in the arraylist of users.
+     * @param playlistname playlist name.
+     * @return position in which the searched playlist is located.
+     */
+
+    public int searchPlaylistByName(String playlistname){
+        int pos = -1;
+        boolean isFound = false;
+        for(int i = 0; i < playlists.size() && !isFound; i++){
+            if(playlistname.equalsIgnoreCase(playlists.get(i).getName())){
+                pos = i;
+                isFound = true;
+            }
+        }
+        return pos;
+    }
+
+    /**
+     * addNewAudio add previously recorded audio to a specified playlist.
+     * @param name audio name.
+     * @param owner audio owner.
+     * @param playlistname playlist name.
+     * @param nickname nickname of the user who owns the playlist.
+     * @return validation message.
+     */
+
+    public String addNewAudio(String name, String owner, String playlistname, String nickname){
+        String msj = "";
+        int posAudio = searchAudioByProducer(name, owner);
+        int posPlaylist = searchPlaylistByName(playlistname);
+        int posUser = searchUserByNickname(nickname);
+        Audio newAudio = audios.get(posAudio);
+        if(posUser != -1){
+            if(posAudio != -1){
+                if(posPlaylist != -1){
+                    if(audios.get(posAudio) instanceof Song){
+                        ((Consumer)(users.get(posUser))).getPlaylists().get(posPlaylist).addSong(newAudio);
+                        msj = "Cancion agregada.";
+                    }else{
+                        if(audios.get(posAudio) instanceof Podcast){
+                            ((Consumer)(users.get(posUser))).getPlaylists().get(posPlaylist).addPodcast(newAudio);
+                            msj = "Podcast agregado.";
+                        }
+                    }
+                    }else{
+                        msj = "No se encuentra la playlist.";
+                    }
+                }else{
+                    msj = "No se encuentra el audio.";
+                }
+            }else{
+                msj = "No se encuentra el usuario.";
+            }
+        return msj;
+    }
+
+    /**
+     * removeAudio remove an audio from a specific playlist.
+     * @param name audio name.
+     * @param owner audio owner.
+     * @param playlistname playlist name.
+     * @param nickname nickname of the user who owns the playlist.
+     * @return validation message.
+     */
+
+    public String removeAudio(String name, String owner, String playlistname, String nickname){
+        String msj = "";
+        int posAudio = searchAudioByProducer(name, owner);
+        int posPlaylist = searchPlaylistByName(playlistname);
+        int posUser = searchUserByNickname(nickname);
+        if(posUser != -1){
+            if(posPlaylist != -1){
+                if(posAudio != -1){
+                    if(audios.get(posAudio) instanceof Song){
+                        ((Consumer)(users.get(posUser))).getPlaylists().get(posPlaylist).removeAudio(posAudio);
+                        msj = "Cancion eliminada.";
+                    }else{
+                        if(audios.get(posAudio) instanceof Podcast){
+                            ((Consumer)(users.get(posUser))).getPlaylists().get(posPlaylist).removeAudio(posAudio);
+                            msj = "Podcast eliminado.";
+                        }
+                    }
+                }else{
+                    msj = "No se encuentra el audio.";
+                }
+            }else{
+                msj = "No se encuentra la playlist.";
+            }
+        }else{
+            msj = "No se encuentra el usuario.";
+        }
+        return msj;
+    }
+
+    /**
      * printGendersEnum prints the numbering of genre types in order.
      * @return listed song genres.
      */
@@ -49,24 +185,9 @@ public class NeoTunesController{
 
     public String printAudios(){
         String msj = "";
-        boolean isEmpty = false;
-        for(int i = 0; i < audios.size() && !isEmpty; i++){
-            msj += (audios.get(i));
-        }
         return msj;
     }
 
-    public Audio searchAudio(String aname){
-        Audio audio = null;
-        boolean isFound = false;
-         for(int i=0;i<audios.size() && !isFound ;i++){
-            if( audios.get(i).getName().equalsIgnoreCase(aname)){
-                audio = audios.get(i);
-                isFound = true;
-            }
-         }
-        return audio;
-    }
 
     /**
      * printPodcastCategory prints the numbering of categorys types in order.
@@ -82,82 +203,32 @@ public class NeoTunesController{
         return msj;
     }
 
-
-
     /**
-     * addFinalPlaylist add a playlist for a specific user.
-     * @param name playlist name.
-     * @param nickname user nickname.
-     * @param optionCode playlist type.
-     * @return playlist creation validation message.
+     * addPlaylist adds a playlist depending on the type of user requesting it.
+     * @param nickname nickname of the user who owns the playlist.
+     * @param playlistname playlist name.
+     * @param optionCode playlist type option.
+     * @return validation message.
      */
 
-    public String addFinalPlaylist(String name, String nickname, int optionCode){
+    public String addPlaylist(String nickname, String playlistname, int optionCode){
         String msj = "";
-        boolean isEmpty = false;
-        for(int i = 0; i < users.size() && !isEmpty; i++){
-            if(users.get(i).getNickname().equalsIgnoreCase(nickname)){
-                if(users.get(i) instanceof Premium){
-                    Premium premium = (Premium) users.get(i);
-                    msj = premium.addPlaylistP(name, optionCode);
+        Playlist newPlaylist = new Playlist(playlistname, optionCode);
+        int posUser = searchUserByNickname(nickname);
+        if(posUser != -1){
+            if(users.get(posUser) instanceof Premium){
+                ((Consumer)(users.get(posUser))).getPlaylists().add(newPlaylist);
+                msj = "Playlist agregada.";
+            }else{
+                if(users.get(posUser) instanceof Standard){
+                    ((Consumer)(users.get(posUser))).getPlaylists().add(newPlaylist);
+                    msj = "Playlist agregada.";
                 }else{
-                    if(users.get(i) instanceof Standard){
-                        Standard standard = (Standard) users.get(i);
-                        msj = standard.addPlaylistS(name, optionCode);
-                    }
+                    msj = "Numero limite de playlist alcanzado.";
                 }
-                isEmpty = true;
-            }else{
-                msj = "El usuario no existe.";
-            }
-        }
-        return msj;
-    }
-
-
-    public String addFinalAudio(String name, int optionCode, String aname){
-        String msj = "";
-        Audio audio = searchAudio(aname);
-        boolean isEmpty = false;
-        for(int i = 0; i < audios.size() && !isEmpty; i++){
-            if(audios.get(i).getName().equalsIgnoreCase(name)){
-                if(users.get(i) instanceof Premium){
-                    Premium premium = (Premium) users.get(i);
-                    msj = premium.addAudio(name, optionCode, audio);
-                }else{
-                    if(users.get(i) instanceof Standard){
-                        Standard standard = (Standard) users.get(i);
-                        msj = standard.addAudio(name, optionCode, audio);
-                    }
                 }
-                isEmpty = true;
             }else{
-                msj = "El audio no existe.";
-            }
-        }
-        return msj;
-    }
-
-    /**
-     * removeAudio remove songs and podcast from a playlist.
-     * @param name name of the audio to remove.
-     * @return method validation message.
-     */
-
-    public String removeAudio(String aname){
-        String msj = "";
-        boolean isEmpty = false;
-        for(int i = 0; i < users.size() && !isEmpty; i++){
-            if(users.get(i) instanceof Premium){
-                Premium premium = (Premium) users.get(i);
-                msj = premium.removeAudioToPlaylistP(aname);
-            }else{
-                if(users.get(i) instanceof Standard){
-                    Standard standard = (Standard) users.get(i);
-                    msj = standard.removeAudioToPlaylistS(aname);
-                }
-                isEmpty = true;
-            }
+                msj = "No se encuentra el usuario consumidor.";
         }
         return msj;
     }

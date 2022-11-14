@@ -2,7 +2,7 @@ package ui;
 
 import model.*;
 
-import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 public class Main{
@@ -58,10 +58,11 @@ public class Main{
 	public void executeOption(int option){
 
         String producerType = "";
+        String owner = "";
+        String playlistname = "";
         int optionCode = 0;
         int option2 = 0;
-        String audio = "";
-        String aname = "";
+        String pname = "";
         int genders = 0;
         int category = 0;
         String description = "";
@@ -85,7 +86,7 @@ public class Main{
 
                 if(producerType.equalsIgnoreCase("Artista")){
                     System.out.println("Ingrese el nombre del artista: ");
-                    name = reader.next();
+                    pname = reader.next();
                     reader.nextLine();
                     System.out.println("Ingrese la cedula del artista: ");
                     cc = reader.next();
@@ -97,7 +98,7 @@ public class Main{
                     url = reader.next();
                     reader.nextLine();
 
-                    User artist = new Artist(name, cc, nickname, url);  
+                    User artist = new Artist(pname, cc, nickname, url);  
 
                     controller.addUsers(artist);
 
@@ -112,7 +113,7 @@ public class Main{
 
                     if(producerType.equalsIgnoreCase("Creador")){
                         System.out.println("Ingrese el nombre del creador de contenido: ");
-                        name = reader.next();
+                        pname = reader.next();
                         reader.nextLine();
                         System.out.println("Ingrese la cedula del creador de contenido: ");
                         cc = reader.next();
@@ -124,7 +125,7 @@ public class Main{
                         url = reader.next();
                         reader.nextLine();
 
-                        User contentcreator = new ContentCreator(name, cc, nickname, url);  
+                        User contentcreator = new ContentCreator(pname, cc, nickname, url);  
 
                         controller.addUsers(contentcreator);
 
@@ -199,10 +200,13 @@ public class Main{
 
                 if(audioType.equalsIgnoreCase("Cancion")){
                     System.out.println("\nIngres el nombre de la cancion: ");
-                    aname = reader.next();
+                    name = reader.next();
                     reader.nextLine();
                     System.out.println("\nIngrese el url de la imagen representativa: ");
                     urlImage = reader.next();
+                    reader.nextLine();
+                    System.out.println("Ingrese el nombre del propietario de la cancion: ");
+                    owner = reader.next();
                     reader.nextLine();
                     System.out.println("\nIngrese la duracion (en segundos) de la cancion: ");
                     duration = reader.nextDouble();
@@ -219,7 +223,7 @@ public class Main{
                         genders = reader.nextInt();
                     }while(genders != 1 && genders != 2 && genders != 3 && genders != 4);
 
-                    Audio song = new Song(aname, urlImage, duration, album, value, genders);
+                    Audio song = new Song(name, owner, urlImage, duration, album, value, genders);
 
                     controller.addAudios(song);
 
@@ -233,10 +237,13 @@ public class Main{
                 }else{
                     if(audioType.equalsIgnoreCase("Podcast")){
                         System.out.println("\nIngres el nombre del podcast: ");
-                        aname = reader.next();
+                        name = reader.next();
                         reader.nextLine();
                         System.out.println("\nIngrese el url de la imagen representativa: ");
                         urlImage = reader.next();
+                        reader.nextLine();
+                        System.out.println("Ingrese el nombre del propietario de la cancion: ");
+                        owner = reader.next();
                         reader.nextLine();
                         System.out.println("\nIngrese la duracion (en segundos) del podcast: ");
                         duration = reader.nextDouble();
@@ -253,7 +260,7 @@ public class Main{
 
                         }while(category != 1 && category != 2 && category != 3 && category != 4);
 
-                        Audio podcast = new Podcast(aname, urlImage, duration, description, category);
+                        Audio podcast = new Podcast(name, owner, urlImage, duration, description, category);
 
                         controller.addAudios(podcast);
 
@@ -274,57 +281,60 @@ public class Main{
 
 			case 4: 
 
-                System.out.println("Ingrese el nickname del usuario propietario de la lista: ");
+                System.out.println("Ingrese el usuario a agregar la playlist: ");
                 nickname = reader.next();
                 reader.nextLine();
 
-                System.out.println("Ingrese el nombre de la playliist: ");
-                name = reader.next();
+                System.out.println("Ingrese el nombre de la playlist: ");
+                playlistname = reader.next();
                 reader.nextLine();
+
                 do{
-                    System.out.println("Ingrese el tipo de lista de reproduccion: \n1. Solo canciones. \n2. Solo podcast. \n3. Canciones y podcast.");
+                    System.out.println("Ingrese el tipo de playlist: \n1. Solo canciones. \n2. Solo podcast. \n3. Canciones y podcast.");
                     optionCode = reader.nextInt();
+                    
                 }while(optionCode != 1 && optionCode != 2 && optionCode != 3);
 
-                msj = controller.addFinalPlaylist(name, nickname, optionCode);
+                msj = controller.addPlaylist(nickname, playlistname, optionCode);
                 System.out.println(msj);
 
 				break; 
 
 			case 5: 
 
+                System.out.println("Ingrese la accion que desea realizar. \n1. Agregar una cancion. \n2. Eliminar una cancion.");
+                option2 = reader.nextInt();
+                System.out.println("Ingrese el nickname del usuario propietario de la playlist: ");
+                nickname = reader.next();
+                reader.nextLine();
                 System.out.println("Ingrese el nombre de la playlist: ");
-                name = reader.next();
+                playlistname = reader.next();
                 reader.nextLine();
 
-                System.out.println("Que deseas hacer con la lista de reproduccion? \n1. Agregar una cancion. \n2. Eliminar una cancion.");
-                option2 = reader.nextInt();
-
                 if(option2 == 1){
+                    System.out.println("Ingrese el nombre del audio a agregar a la playlist: ");
+                    name = reader.next();
+                    reader.nextLine();
+                    System.out.println("Ingrese el nombre del autor del audio: ");
+                    owner = reader.next();
+                    reader.nextLine();
 
-                    do{
-                        System.out.println("Ingrese el tipo de lista de reproduccion: \n1. Solo canciones. \n2. Solo podcast. \n3. Canciones y podcast.");
-                        optionCode = reader.nextInt();
-                    }while(optionCode != 1 && optionCode != 2 && optionCode != 3);
-
-                    System.out.println("Ingrese el nombre del audio: ");
-                    aname = reader.next();
-
-                    msj = controller.addFinalAudio(name, optionCode, aname);
+                    msj = controller.addNewAudio(name, owner, playlistname, nickname);
                     System.out.println(msj);
 
+                } else if(option2 == 2){
+                    System.out.println("Ingrese el nombre del audio a remover de la playlist: ");
+                    name = reader.next();
+                    reader.nextLine();
+                    System.out.println("Ingrese el nombre del autor del audio: ");
+                    owner = reader.next();
+                    reader.nextLine();
 
-                    
-                }else if(option2 == 2){
-                    msj = controller.printAudios();
-                    System.out.println(msj);
-
-                    System.out.println("Ingrese el nombre de la cancion o podcast a remover: ");
-                    aname = reader.next();
-
-                    msj = controller.removeAudio(aname);
-                    System.out.println(msj);
-                }
+                    msj = controller.removeAudio(name, owner, playlistname, nickname);
+                    System.out.println(msj);   
+                }else{
+                    System.out.println("Opcion invalida.");
+                }            
 
 				break; 
 

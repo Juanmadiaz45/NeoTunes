@@ -10,7 +10,7 @@ public class Artist extends Producer{
      * @param cc artiist identification document.
      */
 
-    public Artist(String name, String url, String nickname, String cc){
-        super(name, url, nickname, cc);
+    public Artist(String pname, String url, String nickname, String cc){
+        super(pname, url, nickname, cc);
     }
 }

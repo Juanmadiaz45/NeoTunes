@@ -10,7 +10,7 @@ public class ContentCreator extends Producer{
      * @param cc content creator identifier document.
      */
 
-    public ContentCreator(String name, String url, String nickname, String cc){
-        super(name, url, nickname, cc);
+    public ContentCreator(String pname, String url, String nickname, String cc){
+        super(pname, url, nickname, cc);
     }
 }

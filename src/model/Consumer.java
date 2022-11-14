@@ -1,6 +1,9 @@
 package model;
+import java.util.ArrayList;
 
 public abstract class Consumer extends User{
+
+    private ArrayList<Playlist> playlists;
 
     /**
      * Consumer consumer class constructor.
@@ -10,5 +13,16 @@ public abstract class Consumer extends User{
 
     public Consumer(String nickname, String cc){
         super(nickname, cc);
+        playlists = new ArrayList<Playlist>();
     }
+
+    /**
+     * getPlaylist get the arraylist of playlists
+     * @return array of playlists
+     */
+
+    public ArrayList<Playlist> getPlaylists(){
+        return playlists;
+    }
+
 }

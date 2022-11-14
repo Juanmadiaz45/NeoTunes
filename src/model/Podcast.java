@@ -14,8 +14,8 @@ public class Podcast extends Audio{
      * @param category podcast category.
      */
 
-    public Podcast(String aname, String urlImage, double duration, String description, int category){
-        super(aname, urlImage, duration);
+    public Podcast(String name, String owner, String urlImage, double duration, String description, int category){
+        super(name, urlImage, duration, owner);
         this.description = description;
         this.category = category;
 
