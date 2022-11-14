@@ -13,6 +13,7 @@ public class Audio{
      * @param name audio name.
      * @param urlImage url of the audio identifier image.
      * @param duration audio duration.
+     * @param owner audio owner.
      */
 
     public Audio(String name, String urlImage, double duration, String owner){

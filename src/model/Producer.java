@@ -7,7 +7,7 @@ public abstract class Producer extends User{
 
     /**
      * Producer, 
-     * @param name producer name.
+     * @param pname producer name.
      * @param url url of the producer identifier image.
      * @param nickname producer nickname.
      * @param cc producer identifier document.

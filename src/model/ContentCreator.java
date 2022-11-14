@@ -4,7 +4,7 @@ public class ContentCreator extends Producer{
 
     /**
      * ContentCreator
-     * @param name content creator name.
+     * @param pname content creator name.
      * @param url content creator signature image url.
      * @param nickname content creator nickname.
      * @param cc content creator identifier document.

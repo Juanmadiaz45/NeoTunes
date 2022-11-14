@@ -11,6 +11,7 @@ public class Podcast extends Audio{
      * @param urlImage url of the identifying image of the podcast.
      * @param duration podcast duration.
      * @param description podcast description.
+     * @param owner podcast owner.
      * @param category podcast category.
      */
 
