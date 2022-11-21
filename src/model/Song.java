@@ -6,6 +6,7 @@ public class Song extends Audio{
     private double value;
     private int numberOfTimesSold;
     private int genres;
+    private Genres sGenres;
 
     /**
      * Song song class constructor.
@@ -25,7 +26,8 @@ public class Song extends Audio{
         this.genres = genres;
         numberOfTimesSold = 0;
 
-        Genres sGenres = null;
+        this.sGenres = sGenres;
+
         switch(genres){
             case 1:
                 sGenres = Genres.ROCK;
@@ -43,6 +45,10 @@ public class Song extends Audio{
         }
     }
 
+    public Genres getGenres(){
+        return sGenres;
+    }
+
     public String getAlbum(){
         return album;
     }
@@ -57,7 +63,7 @@ public class Song extends Audio{
 
     @Override
     public String toString(){
-        return "\n**Datos del podcast**\n" +
+        return "\n**Datos de la cancion**\n" +
         "Nombre: " +  name + "\n" +
         "Porpietario: " +  owner + "\n" + 
         "Url: " +  urlImage + "\n" + 

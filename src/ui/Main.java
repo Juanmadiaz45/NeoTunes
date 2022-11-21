@@ -390,6 +390,13 @@ public class Main{
 
 			case 9:
 
+                System.out.println("Ingrese el nickname del usuario consumidor para general algunos informes: ");
+                nickname = reader.next();
+                reader.nextLine();
+
+                msj = controller.generateReports();
+                System.out.println(msj);
+
 				break;
 
 			case 0:

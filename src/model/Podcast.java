@@ -4,6 +4,7 @@ public class Podcast extends Audio{
 
     private String description;
     private int category;
+    private PodcastCategory pCategory;
 
     /**
      * Podcast podcast class constructor.
@@ -19,24 +20,31 @@ public class Podcast extends Audio{
         super(name, urlImage, duration, owner);
         this.description = description;
         this.category = category;
+        this.pCategory = pCategory;
 
         PodcastCategory pCategory = null;
         switch(category){
             case 1:
                 pCategory = PodcastCategory.POLITICA;
+                break;
             case 2:
                 pCategory = PodcastCategory.ENTRETENIMIENTO;
+                break;
             case 3:
                 pCategory = PodcastCategory.VIDEOJUEGOS;
+                break;
             case 4:
                 pCategory = PodcastCategory.MODA;
-            default:
-                System.out.println("Opcion invalida.");
+                break;    
         }
     }
 
     public String getDescription(){
         return description;
+    }
+
+    public PodcastCategory getCategory(){
+        return pCategory;
     }
 
     @Override

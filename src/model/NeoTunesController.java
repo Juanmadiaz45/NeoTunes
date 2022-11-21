@@ -106,7 +106,7 @@ public class NeoTunesController{
         if(posUser != -1){
             if(posPlaylist != -1){
                 if(users.get(posUser) instanceof Consumer){
-                    msj = ((Consumer)(users.get(posUser))).getPlaylists().get(posPlaylist).getCode();
+                    msj = "El codigo para compartir tu playlist es " + ((Consumer)(users.get(posUser))).getPlaylists().get(posPlaylist).getCode();
                 }
             }else{
                 msj = "No se encuentra la playlist.";
@@ -297,6 +297,92 @@ public class NeoTunesController{
         return msj;
     }
 
+    /**
+     * countRockReprodutions count the reproductions of the rock genre.
+     * @return number of reproductions.
+     */
+
+    public int countRockReprodutions(){
+        int count=0;
+        for (int i=0;i<audios.size();i++ ) {
+            if(audios.get(i) instanceof Song){
+                if(((Song)(audios.get(i))).getGenres()==Genres.ROCK){
+                    count=count+((Song)(audios.get(i))).getNumberOfPlays();
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * countPopReprodutions count the reproductions of the pop genre
+     * @return number of reproductions.
+     */
+
+    public int countPopReprodutions(){
+        int count=0;
+        for (int i=0;i<audios.size();i++ ) {
+            if(audios.get(i) instanceof Song){
+                if(((Song)(audios.get(i))).getGenres()==Genres.POP){
+                    count=count+((Song)(audios.get(i))).getNumberOfPlays();
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * countTrapReprodutions count the reproductions of the pop genre
+     * @return number of reproductions.
+     */
+
+    public int countTrapReprodutions(){
+        int count=0;
+        for (int i=0;i<audios.size();i++ ) {
+            if(audios.get(i) instanceof Song){
+                if(((Song)(audios.get(i))).getGenres()==Genres.TRAP){
+                    count=count+((Song)(audios.get(i))).getNumberOfPlays();
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * countHouseReprodutions count the reproductions of the pop genre
+     * @return number of reproductions.
+     */
+
+    public int countHouseReprodutions(){
+        int count=0;
+        for (int i=0;i<audios.size();i++ ) {
+            if(audios.get(i) instanceof Song){
+                if(((Song)(audios.get(i))).getGenres()==Genres.HOUSE){
+                    count=count+((Song)(audios.get(i))).getNumberOfPlays();
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * getTotalGenreReprodutions name which is the most listened to genre on the platform.
+     * @return genre most listened to with its reproductions.
+     */
+
+    public String getTotalGenreReprodutions(){
+        String msj = "";
+        if(countHouseReprodutions() > countPopReprodutions() && countHouseReprodutions() > countTrapReprodutions() && countHouseReprodutions() > countRockReprodutions()){
+            msj = "El genero mas escuhado es House con " +  countHouseReprodutions() + " reproducciones.";
+        }else if( countPopReprodutions() > countHouseReprodutions() && countPopReprodutions() > countTrapReprodutions() &&countPopReprodutions() > countTrapReprodutions()){
+            msj = "El genero mas escuhado es pop con " + countPopReprodutions() + " reproducciones.";
+        }else if(countRockReprodutions() > countHouseReprodutions() && countRockReprodutions() > countPopReprodutions() && countRockReprodutions() > countTrapReprodutions()){
+            msj = "El genero mas escuhados es rock con " + countRockReprodutions() + " reproducciones.";
+        }else if(countTrapReprodutions() > countHouseReprodutions() && countTrapReprodutions() > countPopReprodutions() && countTrapReprodutions() > countRockReprodutions()){
+            msj = "El genero mas escuchado es trap con " + countTrapReprodutions() + " reproducciones.";
+        }
+        return msj;
+    }
 
     /**
      * printPodcastCategory prints the numbering of categorys types in order.
@@ -348,6 +434,21 @@ public class NeoTunesController{
     }
 
     /**
+     * getTotalReprodutionAudios obtains the total reproductions in the audios of the platform.
+     * @return number of reproductions.
+     */
+
+    public String getTotalReprodutionAudios(){
+        String msj = "";
+        int count = 0;
+        for(int i = 0; i < audios.size(); i++){
+            count = (audios.get(i)).getNumberOfPlays()+count;
+            msj = "El total de reproducciones en la app es " +  count + "\n";
+        }
+        return msj;
+    }
+
+    /**
      * addPlaylist adds a playlist depending on the type of user requesting it.
      * @param nickname nickname of the user who owns the playlist.
      * @param playlistname playlist name.
@@ -378,6 +479,101 @@ public class NeoTunesController{
             }else{
                 msj = "No se encuentra el usuario consumidor.";
         }
+        return msj;
+    }
+
+    /**
+     * countPoliticReprodutions count the reproductions of the politic category.
+     * @return number of reproductions.
+     */
+
+    public int countPoliticReprodutions(){
+        int count=0;
+        for (int i=0;i<audios.size();i++ ) {
+            if(audios.get(i) instanceof Podcast){
+                if(((Podcast)(audios.get(i))).getCategory()==PodcastCategory.POLITICA){
+                    count=count+((Podcast)(audios.get(i))).getNumberOfPlays();
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * countEntertaimentReproductions count the reproductions of the entertaiment category.
+     * @return number of reproductions.
+     */
+
+    public int countEntertaimentReproductions(){
+        int count=0;
+        for (int i=0;i<audios.size();i++ ) {
+            if(audios.get(i) instanceof Podcast){
+                if(((Podcast)(audios.get(i))).getCategory()==PodcastCategory.ENTRETENIMIENTO){
+                    count=count+((Podcast)(audios.get(i))).getNumberOfPlays();
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * countVideoGameReproductions count the reproductions of the video game category.
+     * @return number of reproductions.
+     */
+
+    public int countVideoGameReproductions(){
+        int count=0;
+        for (int i=0;i<audios.size();i++ ) {
+            if(audios.get(i) instanceof Podcast){
+                if(((Podcast)(audios.get(i))).getCategory()==PodcastCategory.VIDEOJUEGOS){
+                    count=count+((Podcast)(audios.get(i))).getNumberOfPlays();
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * countFashionReproductions count the reproductions of the fashion category.
+     * @return number of reproductions. 
+     */
+
+    public int countFashionReproductions(){
+        int count=0;
+        for (int i=0;i<audios.size();i++ ) {
+            if(audios.get(i) instanceof Podcast){
+                if(((Podcast)(audios.get(i))).getCategory()==PodcastCategory.MODA){
+                    count=count+((Podcast)(audios.get(i))).getNumberOfPlays();
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * getTotalCategorysReproductions name which is the most listened to category on the platform.
+     * @return number of reproductions.
+     */
+
+    public String getTotalCategorysReproductions(){
+        String msj = "";
+        if(countEntertaimentReproductions() > countFashionReproductions() && countEntertaimentReproductions() > countVideoGameReproductions() && countEntertaimentReproductions() > countPoliticReprodutions()){
+            msj = "La categoria de podcast mas escuchada es Entretenimiento con " +  countEntertaimentReproductions() + " reproducciones.";
+        }else if (countFashionReproductions() > countEntertaimentReproductions() && countFashionReproductions() > countVideoGameReproductions() && countFashionReproductions() > countPoliticReprodutions()){
+            msj = "La categoria mas escuchada es moda con " +  countFashionReproductions() + " reproducciones.";
+        }else if(countVideoGameReproductions() > countEntertaimentReproductions() && countVideoGameReproductions() > countFashionReproductions() && countVideoGameReproductions() > countPoliticReprodutions()){
+            msj = "La categoria mas escuchada es video juegos con " +  countVideoGameReproductions() + " reproducciones.";
+        }else if(countPoliticReprodutions() > countEntertaimentReproductions() && countPoliticReprodutions() > countFashionReproductions() && countPoliticReprodutions() > countVideoGameReproductions()){
+            msj = "La categoria mas esuchada es politica con " +  countPoliticReprodutions() + " reproducciones.";
+        }
+        return msj;
+    }
+
+    public String generateReports(){
+        String msj = "";
+        msj = "\nEl numero total de reproducciones en la plataforma es " + getTotalReprodutionAudios() + "\n" +
+        "\nEl genero de cancion mayormente escucahado en la plataforma es " +  getTotalGenreReprodutions() + "\n" + 
+        "\nLa categoria de podcast mayormente escuhada en la plataforma es " +  getTotalCategorysReproductions() + "\n";
         return msj;
     }
 }
