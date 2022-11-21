@@ -1,12 +1,12 @@
 package model;
 
-public class Audio{
+public abstract class Audio{
 
-    private String name;
-    private String owner;
-    private String urlImage;
-    private int numberOfPlays;
-    private double duration;
+    protected String name;
+    protected String owner;
+    protected String urlImage;
+    protected int numberOfPlays;
+    protected double duration;
 
     /**
      * Audio audio class constructor.
@@ -21,6 +21,7 @@ public class Audio{
         this.urlImage = urlImage;
         this.duration = duration;
         this.owner = owner;
+        this.numberOfPlays = numberOfPlays;
         numberOfPlays = 0;
     }
 
@@ -36,6 +37,10 @@ public class Audio{
         return numberOfPlays;
     }
 
+    public int setNumberOfPlays(){
+        return numberOfPlays;
+    }
+
     public String getUrlImage(){
         return urlImage;
     }
@@ -43,4 +48,6 @@ public class Audio{
     public double getDuration(){
         return duration;
     }
+
+    public abstract String toString();
 }

@@ -5,6 +5,7 @@ public class Premium extends Consumer{
 
     private ArrayList<Song> songs;
     private ArrayList<Podcast> podcasts;
+    private ArrayList<Audio> audios;
 
     /**
      * Premium premium consumer constructor.
@@ -17,6 +18,7 @@ public class Premium extends Consumer{
 
         songs = new ArrayList<Song>();
         podcasts = new ArrayList<Podcast>();
+        audios = new ArrayList<Audio>();
     }
 
 }

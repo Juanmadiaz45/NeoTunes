@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public abstract class Consumer extends User{
 
     private ArrayList<Playlist> playlists;
+    private ArrayList<Audio> audios;
 
     /**
      * Consumer consumer class constructor.
@@ -14,6 +15,7 @@ public abstract class Consumer extends User{
     public Consumer(String nickname, String cc){
         super(nickname, cc);
         playlists = new ArrayList<Playlist>();
+        audios = new ArrayList<Audio>();
     }
 
     /**

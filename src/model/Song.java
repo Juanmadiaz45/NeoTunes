@@ -5,7 +5,7 @@ public class Song extends Audio{
     private String album;
     private double value;
     private int numberOfTimesSold;
-    private int genders;
+    private int genres;
 
     /**
      * Song song class constructor.
@@ -18,30 +18,28 @@ public class Song extends Audio{
      * @param genders song gender.
      */
 
-    public Song(String name, String owner, String urlImage, double duration, String album, double value, int genders){
+    public Song(String name, String owner, String urlImage, double duration, String album, double value, int genres){
         super(name, urlImage, duration, owner);
         this.album = album;
         this.value = value;
-        this.genders = genders;
+        this.genres = genres;
         numberOfTimesSold = 0;
 
-        Genders sGender = null;
-        switch(genders){
+        Genres sGenres = null;
+        switch(genres){
             case 1:
-                sGender = Genders.ROCK;
+                sGenres = Genres.ROCK;
                 break;
             case 2:
-                sGender = Genders.POP;
+                sGenres = Genres.POP;
                 break;
             case 3:
-                sGender = Genders.TRAP;
+                sGenres = Genres.TRAP;
                 break;
             case 4:
-                sGender = Genders.HOUSE;
+                sGenres = Genres.HOUSE;
                 break;
 
-            default:
-                System.out.println("Opcion invalida.");
         }
     }
 
@@ -55,6 +53,19 @@ public class Song extends Audio{
 
     public int getNumberOfTimesSold(){
         return numberOfTimesSold;
+    }
+
+    @Override
+    public String toString(){
+        return "\n**Datos del podcast**\n" +
+        "Nombre: " +  name + "\n" +
+        "Porpietario: " +  owner + "\n" + 
+        "Url: " +  urlImage + "\n" + 
+        "Duracion: " +  duration + "\n" + 
+        "Album: " + album + "\n" +
+        "Valor: " +  value + "\n" +
+        "Genero: " +  genres;
+
     }
 
 }

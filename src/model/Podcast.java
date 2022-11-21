@@ -38,4 +38,16 @@ public class Podcast extends Audio{
     public String getDescription(){
         return description;
     }
+
+    @Override
+    public String toString(){
+        return "\n**Datos del podcast**\n" +
+        "Nombre: " +  name + "\n" +
+        "Porpietario: " +  owner + "\n" + 
+        "Url: " +  urlImage + "\n" + 
+        "Duracion: " +  duration + "\n" + 
+        "Descripcion: " + description + "\n" +
+        "Categoria: " +  category + "\n";
+
+    }
 }

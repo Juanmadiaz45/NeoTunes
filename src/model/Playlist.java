@@ -10,6 +10,7 @@ public class Playlist {
     private int[][] codes; 
     private Random random;
     private ArrayList<Audio> audios;
+    private String code;
 
     private String playlistname;
     private int optionCode;
@@ -26,25 +27,28 @@ public class Playlist {
         codes = new int[ROWS][COLUMS];
         audios = new ArrayList<Audio>();
         this.optionCode = optionCode;
+        this.code = code;
 
-
+    
         switch(optionCode){
             case 1:
-                getSongCode();
+                this.code = getSongCode();
                 break;
             case 2:
-                getPodcastCode();
+               this.code =  getPodcastCode();
                 break;
             case 3:
-                getPodcastAndSongsCode();
+                this.code = getPodcastAndSongsCode();
                 break;
-            default:
-                System.out.println("Opcion invalida.");
         }
     }
 
-    public String getName(){
+    public String getPlaylistname(){
         return playlistname;
+    }
+
+    public String getCode(){
+        return code;
     }
 
     /**

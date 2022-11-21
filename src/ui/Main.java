@@ -63,7 +63,7 @@ public class Main{
         int optionCode = 0;
         int option2 = 0;
         String pname = "";
-        int genders = 0;
+        int genres = 0;
         int category = 0;
         String description = "";
         String consumerType = "";
@@ -85,16 +85,16 @@ public class Main{
                 producerType = reader.next();
 
                 if(producerType.equalsIgnoreCase("Artista")){
-                    System.out.println("Ingrese el nombre del artista: ");
+                    System.out.println("\nIngrese el nombre del artista: ");
                     pname = reader.next();
                     reader.nextLine();
-                    System.out.println("Ingrese la cedula del artista: ");
+                    System.out.println("\nIngrese la cedula del artista: ");
                     cc = reader.next();
                     reader.nextLine();
-                    System.out.println("Ingrese el nickname del artista: ");
+                    System.out.println("\nIngrese el nickname del artista: ");
                     nickname = reader.next();
                     reader.nextLine();
-                    System.out.println("Ingrese el URL con la foto o imagen distintiva: ");
+                    System.out.println("\nIngrese el URL con la foto o imagen distintiva: ");
                     url = reader.next();
                     reader.nextLine();
 
@@ -103,7 +103,7 @@ public class Main{
                     controller.addUsers(artist);
 
                     if(controller.addUsers(artist) == true){
-                        msj = "Artista agregado.";
+                        msj = "\nArtista agregado.";
                         System.out.println(msj);
                     }else{
                         msj = "No se puedo agregar al artista.";
@@ -112,16 +112,16 @@ public class Main{
                 }else{
 
                     if(producerType.equalsIgnoreCase("Creador")){
-                        System.out.println("Ingrese el nombre del creador de contenido: ");
+                        System.out.println("\nIngrese el nombre del creador de contenido: ");
                         pname = reader.next();
                         reader.nextLine();
-                        System.out.println("Ingrese la cedula del creador de contenido: ");
+                        System.out.println("\nIngrese la cedula del creador de contenido: ");
                         cc = reader.next();
                         reader.nextLine();
-                        System.out.println("Ingrese el nickname del creador de contenido: ");
+                        System.out.println("\nIngrese el nickname del creador de contenido: ");
                         nickname = reader.next();
                         reader.nextLine();
-                        System.out.println("Ingrese el URL con la foto o imagen distintiva: ");
+                        System.out.println("\nIngrese el URL con la foto o imagen distintiva: ");
                         url = reader.next();
                         reader.nextLine();
 
@@ -130,14 +130,14 @@ public class Main{
                         controller.addUsers(contentcreator);
 
                         if(controller.addUsers(contentcreator) == true){
-                            msj = "Creador de contenido agregado.";
+                            msj = "\nCreador de contenido agregado.";
                             System.out.println(msj);
                         }else{
                              msj = "No se puedo agregar al creador de contenido.";
                             System.out.println(msj);
                         }
                     }else{
-                    System.out.println("El tipo de productor ingresado no es artista ni creador.");
+                    System.out.println("\nEl tipo de productor ingresado no es artista ni creador.");
                     }
                 }
                 
@@ -145,14 +145,14 @@ public class Main{
 
 			case 2:
 
-                System.out.println("Ingrese el tipo de consumidor a agregar. (Estandar o Premium): ");
+                System.out.println("\nIngrese el tipo de consumidor a agregar. (Estandar o Premium): ");
                 consumerType = reader.next();
 
                 if(consumerType.equalsIgnoreCase("Estandar")){
-                    System.out.println("Ingrese la cedula del consumidor estandar: ");
+                    System.out.println("\nIngrese la cedula del consumidor estandar: ");
                     cc = reader.next();
                     reader.nextLine();
-                    System.out.println("Ingrese el nickname del consumidor estandar: ");
+                    System.out.println("\nIngrese el nickname del consumidor estandar: ");
                     nickname = reader.next();
 
                     Consumer standard = new Standard(cc, nickname);
@@ -160,7 +160,7 @@ public class Main{
                     controller.addUsers(standard);
 
                     if(controller.addUsers(standard) == true){
-                        msj = "Consumidor estandar agregado.";
+                        msj = "\nConsumidor estandar agregado.";
                         System.out.println(msj);
                     }else{
                         msj = "No se puedo agregar al consumidor estandar.";
@@ -168,10 +168,10 @@ public class Main{
                     }
                 }else{
                     if(consumerType.equalsIgnoreCase("Premium")){
-                        System.out.println("Ingrese la cedula del consumidor premium: ");
+                        System.out.println("\nIngrese la cedula del consumidor premium: ");
                         cc = reader.next();
                         reader.nextLine();
-                        System.out.println("Ingrese el nickname del consumidor premium: ");
+                        System.out.println("\nIngrese el nickname del consumidor premium: ");
                         nickname = reader.next();
 
                         User premium = new Premium(nickname, cc);
@@ -179,14 +179,14 @@ public class Main{
                         controller.addUsers(premium);
 
                         if(controller.addUsers(premium) == true){
-                            msj = "Consumidor premium agregado.";
+                            msj = "\nConsumidor premium agregado.";
                             System.out.println(msj);
                         }else{
                             msj = "No se puedo agregar al consumidor premium.";
                             System.out.println(msj);
                         }
                     }else{
-                        msj = "El tipo de consumidor ingresado no es estandar ni premium.";
+                        msj = "\nEl tipo de consumidor ingresado no es estandar ni premium.";
                         System.out.println(msj);
                         }   
                 }
@@ -195,7 +195,7 @@ public class Main{
 
 			case 3: 
 
-                System.out.println("Ingrese el tipo de audio a agregar. (Cancion o Podcast): ");
+                System.out.println("\nIngrese el tipo de audio a agregar. (Cancion o Podcast): ");
                 audioType = reader.next();
 
                 if(audioType.equalsIgnoreCase("Cancion")){
@@ -205,7 +205,7 @@ public class Main{
                     System.out.println("\nIngrese el url de la imagen representativa: ");
                     urlImage = reader.next();
                     reader.nextLine();
-                    System.out.println("Ingrese el nombre del propietario de la cancion: ");
+                    System.out.println("\nIngrese el nombre del propietario de la cancion: ");
                     owner = reader.next();
                     reader.nextLine();
                     System.out.println("\nIngrese la duracion (en segundos) de la cancion: ");
@@ -220,15 +220,15 @@ public class Main{
                         System.out.println("\nIngrese el tipo de genero de la cancion: ");
                         msj = controller.printGendersEnum();
                         System.out.println(msj);
-                        genders = reader.nextInt();
-                    }while(genders != 1 && genders != 2 && genders != 3 && genders != 4);
+                        genres = reader.nextInt();
+                    }while(genres != 1 && genres != 2 && genres != 3 && genres != 4);
 
-                    Audio song = new Song(name, owner, urlImage, duration, album, value, genders);
+                    Audio song = new Song(name, owner, urlImage, duration, album, value, genres);
 
                     controller.addAudios(song);
 
                     if(controller.addAudios(song) == true){
-                        msj = "Cancion agregada.";
+                        msj = "\nCancion agregada.";
                         System.out.println(msj);
                     }else{
                         msj = "No se puedo agregar la cancion.";
@@ -242,12 +242,12 @@ public class Main{
                         System.out.println("\nIngrese el url de la imagen representativa: ");
                         urlImage = reader.next();
                         reader.nextLine();
-                        System.out.println("Ingrese el nombre del propietario de la cancion: ");
+                        System.out.println("\nIngrese el nombre del propietario de la cancion: ");
                         owner = reader.next();
                         reader.nextLine();
                         System.out.println("\nIngrese la duracion (en segundos) del podcast: ");
                         duration = reader.nextDouble();
-                        System.out.println("Ingrese la descripcion del podcast: ");
+                        System.out.println("\nIngrese la descripcion del podcast: ");
                         description = reader.next();
                         reader.nextLine();
 
@@ -265,14 +265,14 @@ public class Main{
                         controller.addAudios(podcast);
 
                         if(controller.addAudios(podcast) == true){
-                            msj = "Podcast agregado.";
+                            msj = "\nPodcast agregado.";
                             System.out.println(msj);
                         }else{
-                            msj = "No se puedo agregar el podcast.";
+                            msj = "\nNo se puedo agregar el podcast.";
                             System.out.println(msj);
                         }
                     }else{
-                        msj = "El tipo de audio ingresado no es una cancion ni un podcast.";
+                        msj = "\nEl tipo de audio ingresado no es una cancion ni un podcast.";
                         System.out.println(msj);
                         }   
                 }
@@ -281,16 +281,16 @@ public class Main{
 
 			case 4: 
 
-                System.out.println("Ingrese el usuario a agregar la playlist: ");
+                System.out.println("\nIngrese el usuario a agregar la playlist: ");
                 nickname = reader.next();
                 reader.nextLine();
 
-                System.out.println("Ingrese el nombre de la playlist: ");
+                System.out.println("\nIngrese el nombre de la playlist: ");
                 playlistname = reader.next();
                 reader.nextLine();
 
                 do{
-                    System.out.println("Ingrese el tipo de playlist: \n1. Solo canciones. \n2. Solo podcast. \n3. Canciones y podcast.");
+                    System.out.println("\nIngrese el tipo de playlist: \n1. Solo canciones. \n2. Solo podcast. \n3. Canciones y podcast.");
                     optionCode = reader.nextInt();
                     
                 }while(optionCode != 1 && optionCode != 2 && optionCode != 3);
@@ -302,20 +302,24 @@ public class Main{
 
 			case 5: 
 
-                System.out.println("Ingrese la accion que desea realizar. \n1. Agregar una cancion. \n2. Eliminar una cancion.");
+                System.out.println("\nIngrese la accion que desea realizar. \n1. Agregar una cancion. \n2. Eliminar una cancion.");
                 option2 = reader.nextInt();
-                System.out.println("Ingrese el nickname del usuario propietario de la playlist: ");
+
+                msj = controller.printAudios();
+                System.out.println(msj);
+                
+                System.out.println("\nIngrese el nickname del usuario propietario de la playlist: ");
                 nickname = reader.next();
                 reader.nextLine();
-                System.out.println("Ingrese el nombre de la playlist: ");
+                System.out.println("\nIngrese el nombre de la playlist: ");
                 playlistname = reader.next();
                 reader.nextLine();
 
                 if(option2 == 1){
-                    System.out.println("Ingrese el nombre del audio a agregar a la playlist: ");
+                    System.out.println("\nIngrese el nombre del audio a agregar a la playlist: ");
                     name = reader.next();
                     reader.nextLine();
-                    System.out.println("Ingrese el nombre del autor del audio: ");
+                    System.out.println("\nIngrese el nombre del autor del audio: ");
                     owner = reader.next();
                     reader.nextLine();
 
@@ -323,26 +327,47 @@ public class Main{
                     System.out.println(msj);
 
                 } else if(option2 == 2){
-                    System.out.println("Ingrese el nombre del audio a remover de la playlist: ");
+                    System.out.println("\nIngrese el nombre del audio a remover de la playlist: ");
                     name = reader.next();
                     reader.nextLine();
-                    System.out.println("Ingrese el nombre del autor del audio: ");
+                    System.out.println("\nIngrese el nombre del autor del audio: ");
                     owner = reader.next();
                     reader.nextLine();
 
                     msj = controller.removeAudio(name, owner, playlistname, nickname);
                     System.out.println(msj);   
                 }else{
-                    System.out.println("Opcion invalida.");
+                    System.out.println("\nOpcion invalida.");
                 }            
 
 				break; 
 
 			case 6:
 
+                System.out.println("\nIngrese el nickname del usuario propietario de la playlist: ");
+                nickname = reader.next();
+                System.out.println("\nIngrese el nombre de la playlist: ");
+                playlistname = reader.next();
+
+                msj = controller.sharePlaylist(nickname, playlistname);
+                System.out.println(msj);
+
 				break;
 
 			case 7:
+
+                System.out.println("\nIngrese su nickname de usuario: ");
+                nickname = reader.next();
+                reader.nextLine();
+                System.out.println("\nIngrese el nombre del audio: ");
+                name = reader.next();
+                reader.nextLine();
+                System.out.println("\nIngrese el nombre del propietario del audio: ");
+                owner = reader.next();
+                reader.nextLine();
+
+                msj = controller.playSound(nickname, name, owner);
+                System.out.println(msj);
 
 				break;
 

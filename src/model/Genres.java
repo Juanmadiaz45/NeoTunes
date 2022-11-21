@@ -1,6 +1,6 @@
 package model;
 
-public enum Genders{
+public enum Genres{
     
     ROCK, 
     POP, 
