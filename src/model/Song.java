@@ -15,7 +15,7 @@ public class Song extends Audio{
      * @param album name of the album to which the song belongs.
      * @param value dollar value of the song.
      * @param owner song owner.
-     * @param genders song gender.
+     * @param genres song gender.
      */
 
     public Song(String name, String owner, String urlImage, double duration, String album, double value, int genres){

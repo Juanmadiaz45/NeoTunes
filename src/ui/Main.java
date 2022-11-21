@@ -45,7 +45,7 @@ public class Main{
 				"4. Crear una lista de reproduccion.\n" +
 				"5. Editar una lista de reproduccion.\n" +
 				"6. Compartir una lista de reproduccion.\n" +
-				"7. Simular la reproducción de una cancion o podcast (estandar y premium).\n" +
+				"7. Simular la reproduccion de una cancion o podcast (estandar y premium).\n" +
 				"8. Comprar una cancion.\n" +
 				"9. Generar informes con los datos registrados.\n" +
 				"0. Exit. " +
@@ -372,6 +372,19 @@ public class Main{
 				break;
 
 			case 8:
+
+                System.out.println("\nIngrese el nickname del usuario: ");
+                nickname = reader.next();
+                reader.nextLine();
+                System.out.println("\nIngrese el nombre de la cancion: ");
+                name = reader.next();
+                reader.nextLine();
+                System.out.println("\nIngrese el nombre del propietario de la cancion: ");
+                owner = reader.next();
+                reader.nextLine();
+
+                msj = controller.buySong(nickname, name, owner);
+                System.out.println(msj);
 
 				break;
 

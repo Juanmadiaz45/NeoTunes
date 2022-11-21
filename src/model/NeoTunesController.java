@@ -313,6 +313,41 @@ public class NeoTunesController{
     }
 
     /**
+     * buySong Make an instance to sell a song depending on the type of user.
+     * @param nickname user nickname.
+     * @param name song name.
+     * @param owner song onwer.
+     * @return confirmation message. 
+     */
+
+    public String buySong(String nickname, String name, String owner){
+        String msj = "";
+        int posUser = searchUserByNickname(nickname);
+        int posAudio = searchAudioByProducer(name, owner);
+        int count = 0;
+        if(posUser != -1){
+            if(posAudio != -1){
+                if(audios.get(posAudio) instanceof Song){
+                    if(users.get(posUser) instanceof Premium){
+                        count = (((Song)(audios.get(posAudio))).getNumberOfTimesSold()+1);
+                        msj = "Cancion vendida.";
+                    }else if(users.get(posUser) instanceof Standard){
+                        for(int i = 0; i < 100; i++){
+                            count = (((Song)(audios.get(posAudio))).getNumberOfTimesSold()+1);
+                            msj = "Cancion vendida.";   
+                        }
+                    }
+                }
+            }else{
+                msj = "No se encuentra el audio.";
+            }
+        }else{
+            msj = "No se se encuentra al usuario.";
+        }
+        return msj;
+    }
+
+    /**
      * addPlaylist adds a playlist depending on the type of user requesting it.
      * @param nickname nickname of the user who owns the playlist.
      * @param playlistname playlist name.
